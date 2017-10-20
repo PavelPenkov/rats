@@ -22,7 +22,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# Result
+
+def increment(x)
+  if x.is_a?(Fixnum)
+    Rats.success(x+1)
+  else
+    Rats.failure('x should be Fixnum')
+  end
+end
+
+def divide_by(x, y)
+  if y == 0
+    Rats.failure("can't divide by zero")
+  else
+    Rats.success(x/y)
+  end
+end
+
+result = increment(x).flat_map {|a| divide_by(a, 2) }
+
+if result.success?
+  puts "Success: #{result.value}"
+else
+  puts "Failure: #{result.value}"
+end
+```
 
 ## Development
 
